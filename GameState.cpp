@@ -27,7 +27,8 @@ void GameState::update()
   /**
    * Update snake
    */
-    
+  
+
   // Move
   for (int i = (sizeof(snakeBody) / sizeof(Vector*)) - 1; i>0; i--) {
     Vector*cur=snakeBody[i];

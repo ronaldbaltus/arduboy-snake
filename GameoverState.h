@@ -10,7 +10,7 @@ class GameoverState : public State
     {
       score = _score;
     }
-    //virtual void setup();
+    virtual void setup();
     virtual void input(Arduboy2 &);
     virtual void update();
     virtual void draw(Arduboy2 &);

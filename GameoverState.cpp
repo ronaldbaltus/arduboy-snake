@@ -3,10 +3,10 @@
 #include "GameState.h"
 //#include "StateManager.h"
 
-// void GameoverState::setup()
-// {
-//     // don't think there is much to setup
-// }
+void GameoverState::setup()
+{
+    // don't think there is much to setup
+}
 
 void GameoverState::update()
 {
