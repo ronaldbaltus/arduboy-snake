@@ -4,16 +4,13 @@
 class StateManager
 {
   private:
-    State*state=NULL;
+    static State*state;
   public:
-    StateManager()
-    {}
-
-    State* getCurrent() 
+    static State* getState() 
     {
       return state;
     }
-    void setCurrent(State*newState)
+    static void setState(State*newState)
     {
       if (state != NULL)
       {

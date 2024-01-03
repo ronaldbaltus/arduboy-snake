@@ -9,30 +9,27 @@
 // 128x64
 // 8x8 tiles?
 Arduboy2 arduboy;
-auto stateManager = new StateManager();
 
-// Initialize GameState
 void setup() {
-  // put your setup code here, to run once:
   arduboy.begin();
   arduboy.setFrameRate(frameRate);
   arduboy.initRandomSeed();
 
-  stateManager->setCurrent(new TitlescreenState(stateManager));
-  stateManager->getCurrent()->setup();
+  StateManager::setState(new TitlescreenState());
+  StateManager::getState()->setup();
 }
 
 void loop() {
   if (!(arduboy.nextFrame())) return;
   arduboy.pollButtons();
-  stateManager->getCurrent()->input(arduboy);
+  StateManager::getState()->input(arduboy);
 
   if (arduboy.frameCount % 30 == 0) {
-    stateManager->getCurrent()->update();
+    StateManager::getState()->update();
   }
 
   arduboy.clear();
-  stateManager->getCurrent()->draw(arduboy);
+  StateManager::getState()->draw(arduboy);
   arduboy.display();
 }
 

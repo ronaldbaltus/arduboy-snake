@@ -1,6 +1,7 @@
 #pragma once
 #include "State.h"
 #include "Vector.h"
+#include "StateManager.h"
 
 class GameState : public State
 {
@@ -11,6 +12,7 @@ class GameState : public State
     virtual void update();
     virtual void draw(Arduboy2 &);
     void spawnSnack();
+    void gameOver();
 
   private:
     /**

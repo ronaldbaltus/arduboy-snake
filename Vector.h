@@ -10,7 +10,7 @@ public:
     y = _y;
   }
   add(Vector v){
-    x=(x+v.x)%columns;
-    y=(y+v.y)%rows;
+    x=(x+v.x); //%columns;
+    y=(y+v.y); //%rows;
   }
 };
