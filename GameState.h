@@ -8,9 +8,9 @@ class GameState : public State
   public:
     GameState();
     virtual void setup();
-    virtual void input(Arduboy2 &);
+    virtual void input();
     virtual void update();
-    virtual void draw(Arduboy2 &);
+    virtual void draw();
     void spawnSnack();
     void gameOver();
 
@@ -18,40 +18,15 @@ class GameState : public State
     /**
      * Snaaaaaaaaaake
      */
-    Vector* snakeBody[30] = {
+    Vector* snakeBody[128] = {
       new Vector(columns / 2, rows / 2),
       new Vector((columns / 2)+1, (rows / 2)+0),
-      new Vector((columns / 2)+2, (rows / 2)+0),
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      NULL
+      new Vector((columns / 2)+2, (rows / 2)+0)
     };
     
     Vector snack;
     int currentDirection=3;
     int direction=3;
+    int score=0;
+    bool ledOn=false;
 };

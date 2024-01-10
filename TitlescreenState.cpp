@@ -7,7 +7,7 @@ void TitlescreenState::setup()
   
 }
 
-void TitlescreenState::input(Arduboy2 & arduboy)
+void TitlescreenState::input()
 {
   if (arduboy.justReleased(A_BUTTON)) 
   {
@@ -20,7 +20,7 @@ void TitlescreenState::update()
  
 }
 
-void TitlescreenState::draw(Arduboy2 & arduboy)
+void TitlescreenState::draw()
 {
   //arduboy.drawSlowXYBitmap(0, 0, Bitmaps::Titlescreen, 128, 64);
   arduboy.drawBitmap(0, 0, Bitmaps::Titlescreen, Bitmaps::TitlescreenWidth, Bitmaps::TitlescreenHeight);

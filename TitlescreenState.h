@@ -1,4 +1,5 @@
 #pragma once
+#include "Utils.h"
 #include "State.h"
 #include "Vector.h"
 #include "StateManager.h"
@@ -10,7 +11,7 @@ class TitlescreenState : public State
     {
     }
     virtual void setup();
-    virtual void input(Arduboy2 &);
+    virtual void input();
     virtual void update();
-    virtual void draw(Arduboy2 &);
+    virtual void draw();
 };

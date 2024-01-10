@@ -14,7 +14,7 @@ void GameState::setup()
   spawnSnack(); // Give snack a random position
 }
 
-void GameState::input(Arduboy2 & arduboy)
+void GameState::input()
 {
   if (arduboy.justReleased(UP_BUTTON) && currentDirection != 2) direction = 0;
   if (arduboy.justReleased(RIGHT_BUTTON) && currentDirection != 3) direction = 1;
@@ -27,7 +27,10 @@ void GameState::update()
   /**
    * Update snake
    */
-  
+
+  // Make led "flicker"
+  ledOn = !ledOn;
+  arduboy.setRGBled(BLUE_LED, ledOn ? 10 : 0);
 
   // Move
   for (int i = (sizeof(snakeBody) / sizeof(Vector*)) - 1; i>0; i--) {
@@ -64,12 +67,14 @@ void GameState::update()
       snakeBody[i]=new Vector(snack.x, snack.y);
       break;
     }
+    score++; // Add score
 
+    // Spawn new snack
     spawnSnack();
   }
 }
 
-void GameState::draw(Arduboy2 & arduboy)
+void GameState::draw()
 {
   /**
    * Render snake.
@@ -87,15 +92,36 @@ void GameState::draw(Arduboy2 & arduboy)
 
   // Render snack
   arduboy.drawBitmap(snack.x * 8, snack.y * 8, Bitmaps::Snack, Bitmaps::SnackWidth, Bitmaps::SnackHeight);
+
+  // Render score
+  // put it in a corner where it is not obstructing anything.
+  auto posx = snakeBody[0]->x; // ((snack.x + snakeBody[0]->x) / 2);
+  auto posy = snakeBody[0]->y; // ((snack.y + snakeBody[0]->y) / 2) 
+  arduboy.setCursor(posx <= 8 ? 112 : 0, posy <= 4 ? 56 : 0);
+  arduboy.setTextSize(1);
+  arduboy.print(score);
 }
 
 void GameState::spawnSnack()
 {
-  snack.x=random(0, columns);
-  snack.y=random(0, rows);
+  for (auto i = 0; i < 10; i++) // limit tries to 10.
+  {
+    snack.x=random(0, columns);
+    snack.y=random(0, rows);
+
+    bool collision = false;
+    for (int i = 1; i < (sizeof(snakeBody) / sizeof(Vector*)); i++) {
+      if (snack.x == snakeBody[i]->x && snack.y == snakeBody[i]->y) {
+        collision = true;
+        break;
+      }
+    }
+
+    if (!collision) break;
+  }
 }
 
 void GameState::gameOver()
 {
-  StateManager::setState(new GameoverState(1337));
+  StateManager::setState(new GameoverState(score));
 }

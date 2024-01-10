@@ -6,6 +6,7 @@
 void GameoverState::setup()
 {
     // don't think there is much to setup
+    arduboy.setRGBled(RED_LED, 100);
 }
 
 void GameoverState::update()
@@ -14,7 +15,7 @@ void GameoverState::update()
   flip = !flip;
 }
 
-void GameoverState::draw(Arduboy2 & arduboy)
+void GameoverState::draw()
 {
   if (flip)
   {
@@ -28,12 +29,18 @@ void GameoverState::draw(Arduboy2 & arduboy)
   // TODO: Print score
   //arduboy.draw
   //arduboy.println()
+
+
+  arduboy.setCursor(56, 31);
+  arduboy.setTextSize(1);
+  arduboy.print(score);
 }
 
-void GameoverState::input(Arduboy2 & arduboy)
+void GameoverState::input()
 {
   if (arduboy.justReleased(A_BUTTON)) 
   {
+    arduboy.setRGBled(RED_LED, 0);
     StateManager::setState(new GameState());
   }
 }

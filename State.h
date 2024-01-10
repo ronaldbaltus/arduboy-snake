@@ -5,7 +5,7 @@ class State
 {
   public:
     virtual void setup();
-    virtual void input(Arduboy2 &);
+    virtual void input();
     virtual void update();
-    virtual void draw(Arduboy2 &);
+    virtual void draw();
 };

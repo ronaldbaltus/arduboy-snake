@@ -11,9 +11,9 @@ class GameoverState : public State
       score = _score;
     }
     virtual void setup();
-    virtual void input(Arduboy2 &);
+    virtual void input();
     virtual void update();
-    virtual void draw(Arduboy2 &);
+    virtual void draw();
 
   private:
     bool flip = false;

@@ -1,4 +1,4 @@
-#include <Arduboy2.h>
+#include "Utils.h"
 #include "Config.h"
 #include "Images.h"
 #include "GameState.h"
@@ -8,7 +8,7 @@
 // Specs
 // 128x64
 // 8x8 tiles?
-Arduboy2 arduboy;
+//Arduboy2 arduboy;
 
 void setup() {
   arduboy.begin();
@@ -22,14 +22,14 @@ void setup() {
 void loop() {
   if (!(arduboy.nextFrame())) return;
   arduboy.pollButtons();
-  StateManager::getState()->input(arduboy);
+  StateManager::getState()->input();
 
   if (arduboy.frameCount % 30 == 0) {
     StateManager::getState()->update();
   }
 
   arduboy.clear();
-  StateManager::getState()->draw(arduboy);
+  StateManager::getState()->draw();
   arduboy.display();
 }
 

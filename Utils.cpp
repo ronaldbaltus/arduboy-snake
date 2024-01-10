@@ -1,5 +1,7 @@
 #include "Utils.h"
 
+Arduboy2 arduboy;
+
 void drawTile(Arduboy2 & arduboy, int x, int y) {
   arduboy.drawRect(x * 8, y * 8, 8, 8);
 }
